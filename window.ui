@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>826</width>
+    <width>1349</width>
     <height>682</height>
    </rect>
   </property>
@@ -24,10 +24,20 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="inputCamStream" native="true">
     <property name="geometry">
      <rect>
       <x>30</x>
+      <y>50</y>
+      <width>640</width>
+      <height>480</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="outputCanvas" native="true">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
       <y>50</y>
       <width>640</width>
       <height>480</height>
@@ -40,7 +50,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>826</width>
+     <width>1349</width>
      <height>21</height>
     </rect>
    </property>

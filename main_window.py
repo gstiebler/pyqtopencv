@@ -19,7 +19,8 @@ class CaptureWindow(QtGui.QMainWindow):
         self.stream.set(3, 640)
         self.stream.set(4, 480)
         
-        self.videoScreen = VideoScreen(self, self.ui.widget)
+        self.videoScreen = VideoScreen(self, self.ui.inputCamStream)
+        self.outputScreen = VideoScreen(self, self.ui.outputCanvas)
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.queryFrame)
@@ -37,3 +38,4 @@ class CaptureWindow(QtGui.QMainWindow):
         if not ret: return
 
         self.videoScreen.onNewFrame(frame)
+        self.outputScreen.onNewFrame(frame)
