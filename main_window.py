@@ -4,6 +4,8 @@ from PyQt4 import QtGui, QtCore, uic
 
 from video_screen import VideoScreen 
 
+import img_process
+
 class CaptureWindow(QtGui.QMainWindow):
 
     DEFAULT_FPS = 30
@@ -39,8 +41,5 @@ class CaptureWindow(QtGui.QMainWindow):
         if not ret: return
 
         self.videoScreen.onNewFrame(frame)
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-        sobel_filter_x = np.array([[1, -2, 1], [2, -4, 2], [1, -2, 1]])
-        img_filter_x = cv2.filter2D(gray, -1, sobel_filter_x)
-        color = cv2.cvtColor(img_filter_x, cv2.COLOR_GRAY2RGB)
+        color = img_process.imgProcess(frame)
         self.outputScreen.onNewFrame(color)
