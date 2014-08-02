@@ -16,8 +16,9 @@ class CaptureWindow(QtGui.QMainWindow):
         
         self.stream = cv2.VideoCapture(1)
         
-        self.stream.set(3, 640)
-        self.stream.set(4, 480)
+        
+        self.stream.set(3, self.ui.inputCamStream.size().width())
+        self.stream.set(4, self.ui.inputCamStream.size().height())
         
         self.videoScreen = VideoScreen(self, self.ui.inputCamStream)
         self.outputScreen = VideoScreen(self, self.ui.outputCanvas)
@@ -38,4 +39,8 @@ class CaptureWindow(QtGui.QMainWindow):
         if not ret: return
 
         self.videoScreen.onNewFrame(frame)
-        self.outputScreen.onNewFrame(frame)
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        sobel_filter_x = np.array([[1, -2, 1], [2, -4, 2], [1, -2, 1]])
+        img_filter_x = cv2.filter2D(gray, -1, sobel_filter_x)
+        color = cv2.cvtColor(img_filter_x, cv2.COLOR_GRAY2RGB)
+        self.outputScreen.onNewFrame(color)

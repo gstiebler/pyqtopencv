@@ -11,11 +11,8 @@ class VideoScreen(QtGui.QWidget):
         self.mainWindow = mainWindow
 
         self.frame = None
-        
-        w = 640
-        h = 480
 
-        self.setGeometry( 0, 0, w, h )
+        self.setGeometry( 0, 0, parent.size().width(), parent.size().height() )
 
     def frame2QImage(self, frame):
         height, width=frame.shape[:2]
