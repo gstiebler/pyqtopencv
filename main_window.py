@@ -1,4 +1,4 @@
-﻿import cv2
+import cv2
 import numpy as np
 from PyQt4 import QtGui, QtCore, uic
 
@@ -17,7 +17,6 @@ class CaptureWindow(QtGui.QMainWindow):
         self.ui.lineEdit.setText("qt python")
         
         self.stream = cv2.VideoCapture(1)
-        
         
         self.stream.set(3, self.ui.inputCamStream.size().width())
         self.stream.set(4, self.ui.inputCamStream.size().height())
