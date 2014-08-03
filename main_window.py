@@ -29,6 +29,12 @@ class CaptureWindow(QtGui.QMainWindow):
         self.paramProvider.addSlider(self.ui.sliderHueMin, "hueMin")
         self.paramProvider.addSlider(self.ui.sliderHueMax, "hueMax")
         self.paramProvider.addSlider(self.ui.sliderSaturationMin, "satMin")
+        
+        self.ui.sliderHueMin.valueChanged.connect(self.sliderValueChanged)
+        self.ui.sliderHueMax.valueChanged.connect(self.sliderValueChanged)
+        self.ui.sliderSaturationMin.valueChanged.connect(self.sliderValueChanged)
+        
+        self.ui.keepCapturingCheckBox.stateChanged.connect(self.keepCapturingClicked)
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.queryFrame)
@@ -39,12 +45,26 @@ class CaptureWindow(QtGui.QMainWindow):
         self.timer.setInterval(1000/fps)
         self.timer.start()
         self.ui.show()
+        
+    def process(self):
+        self.videoScreen.onNewFrame(self.frame)
+        color = img_process.imgProcess(self.frame, self.paramProvider)
+        self.outputScreen.onNewFrame(color)
 
     @QtCore.pyqtSlot()
     def queryFrame(self):
-        ret, frame = self.stream.read()
+        ret, self.frame = self.stream.read()
         if not ret: return
-
-        self.videoScreen.onNewFrame(frame)
-        color = img_process.imgProcess(frame, self.paramProvider)
-        self.outputScreen.onNewFrame(color)
+        self.process()
+        
+    @QtCore.pyqtSlot()
+    def sliderValueChanged(self):
+        if(not self.ui.keepCapturingCheckBox.isChecked()):
+            self.process()
+        
+    def keepCapturingClicked(self, state):
+        if(state):
+            self.timer.start()
+        else:
+            self.timer.stop()
+        

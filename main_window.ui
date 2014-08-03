@@ -170,6 +170,22 @@
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="keepCapturingCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>660</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Keep capturing</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
