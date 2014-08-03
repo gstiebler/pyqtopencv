@@ -16,7 +16,7 @@ class CaptureWindow(QtGui.QMainWindow):
         self.ui = uic.loadUi('window.ui')
         self.ui.lineEdit.setText("qt python")
         
-        self.stream = cv2.VideoCapture(1)
+        self.stream = cv2.VideoCapture(0)
         
         self.stream.set(3, self.ui.inputCamStream.size().width())
         self.stream.set(4, self.ui.inputCamStream.size().height())
