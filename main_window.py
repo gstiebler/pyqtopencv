@@ -64,8 +64,8 @@ class CaptureWindow(QtGui.QMainWindow):
             self.process()
         
     @QtCore.pyqtSlot()
-    def keepCapturingClicked(self, state):
-        if(state):
+    def keepCapturingClicked(self):
+        if(self.ui.keepCapturingCheckBox.isChecked()):
             self.timer.start()
         else:
             self.timer.stop()
