@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QWidget" name="inputCamStream" native="true">
     <property name="geometry">
      <rect>
@@ -184,6 +174,19 @@
     </property>
     <property name="checked">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="zoomViewButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zoom view</string>
     </property>
    </widget>
   </widget>

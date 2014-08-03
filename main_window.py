@@ -6,6 +6,7 @@ from video_screen import VideoScreen
 from param_provider import ParamProvider
 
 import img_process
+import viewer_window
 
 class CaptureWindow(QtGui.QMainWindow):
 
@@ -14,8 +15,7 @@ class CaptureWindow(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
  
-        self.ui = uic.loadUi('window.ui')
-        self.ui.lineEdit.setText("qt python")
+        self.ui = uic.loadUi('main_window.ui')
         
         self.stream = cv2.VideoCapture(0)
         
@@ -35,6 +35,7 @@ class CaptureWindow(QtGui.QMainWindow):
         self.ui.sliderSaturationMin.valueChanged.connect(self.sliderValueChanged)
         
         self.ui.keepCapturingCheckBox.stateChanged.connect(self.keepCapturingClicked)
+        self.ui.zoomViewButton.clicked.connect(self.openViewerWindow)
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.queryFrame)
@@ -62,9 +63,13 @@ class CaptureWindow(QtGui.QMainWindow):
         if(not self.ui.keepCapturingCheckBox.isChecked()):
             self.process()
         
+    @QtCore.pyqtSlot()
     def keepCapturingClicked(self, state):
         if(state):
             self.timer.start()
         else:
             self.timer.stop()
-        
+    
+    @QtCore.pyqtSlot()
+    def openViewerWindow(self):
+        self.win = viewer_window.ViewerWindow(self.frame)
