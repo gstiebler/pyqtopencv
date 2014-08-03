@@ -15,11 +15,13 @@ def verticalEdges(grayImg):
 def hsvProcess(inputColorImg, paramProvider):
     color = cv2.cvtColor(inputColorImg, cv2.COLOR_RGB2HSV)
     h, s, v = cv2.split(color)
-    s.fill(255)
     h = cv2.blur(h,(5,5))
-    min = paramProvider.getParam("min")
-    max = paramProvider.getParam("max")
-    hMask = cv2.inRange(h, min, max)
-    img = cv2.merge((h, hMask, v))
+    hueMin = paramProvider.getParam("hueMin")
+    hueMax = paramProvider.getParam("hueMax")
+    satMin = paramProvider.getParam("satMin")
+    hMask = cv2.inRange(h, hueMin, hueMax)
+    sMask = cv2.inRange(s, satMin, 255)
+    finalMask = cv2.bitwise_and(hMask, sMask)
+    img = cv2.merge((h, finalMask, v))
     return cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
     

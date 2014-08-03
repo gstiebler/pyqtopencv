@@ -26,8 +26,9 @@ class CaptureWindow(QtGui.QMainWindow):
         self.outputScreen = VideoScreen(self, self.ui.outputCanvas)
         
         self.paramProvider = ParamProvider()
-        self.paramProvider.addSlider(self.ui.sliderMin, "min")
-        self.paramProvider.addSlider(self.ui.sliderMax, "max")
+        self.paramProvider.addSlider(self.ui.sliderHueMin, "hueMin")
+        self.paramProvider.addSlider(self.ui.sliderHueMax, "hueMax")
+        self.paramProvider.addSlider(self.ui.sliderSaturationMin, "satMin")
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.queryFrame)
