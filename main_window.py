@@ -3,6 +3,7 @@ import numpy as np
 from PyQt4 import QtGui, QtCore, uic
 
 from video_screen import VideoScreen 
+from param_provider import ParamProvider
 
 import img_process
 
@@ -23,6 +24,10 @@ class CaptureWindow(QtGui.QMainWindow):
         
         self.videoScreen = VideoScreen(self, self.ui.inputCamStream)
         self.outputScreen = VideoScreen(self, self.ui.outputCanvas)
+        
+        self.paramProvider = ParamProvider()
+        self.paramProvider.addSlider(self.ui.sliderMin, "min")
+        self.paramProvider.addSlider(self.ui.sliderMax, "max")
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.queryFrame)
@@ -40,5 +45,5 @@ class CaptureWindow(QtGui.QMainWindow):
         if not ret: return
 
         self.videoScreen.onNewFrame(frame)
-        color = img_process.imgProcess(frame)
+        color = img_process.imgProcess(frame, self.paramProvider)
         self.outputScreen.onNewFrame(color)

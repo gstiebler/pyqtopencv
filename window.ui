@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1349</width>
-    <height>682</height>
+    <height>747</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,6 +44,90 @@
      </rect>
     </property>
    </widget>
+   <widget class="QSlider" name="sliderMin">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>560</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="sliderMax">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>600</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>570</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Min:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>600</y>
+      <width>46</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Max:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMinValue">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>560</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMaxValue">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>600</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -57,8 +141,42 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <layoutdefault spacing="6" margin="9"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>sliderMin</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>labelMinValue</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>179</x>
+     <y>590</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>366</x>
+     <y>590</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sliderMax</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>labelMaxValue</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>625</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>625</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <designerdata>
   <property name="gridDeltaX">
    <number>10</number>
