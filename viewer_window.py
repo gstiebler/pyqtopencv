@@ -12,4 +12,5 @@ class ViewerWindow(QtGui.QMainWindow):
         self.ui = uic.loadUi('viewer_window.ui')
         self.videoScreen = VideoScreen(self, self.ui.imageCanvas)
         self.videoScreen.onNewFrame(image)
+        self.ui.imageCanvas.setMinimumSize ( 640, 480 )
         self.ui.show()

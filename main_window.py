@@ -36,6 +36,8 @@ class CaptureWindow(QtGui.QMainWindow):
         
         self.ui.keepCapturingCheckBox.stateChanged.connect(self.keepCapturingClicked)
         self.ui.zoomViewButton.clicked.connect(self.openViewerWindow)
+        
+        self.imgProcess = img_process.ImgProcess()
 
         self.timer = QtCore.QTimer(self)
         self.timer.timeout.connect(self.queryFrame)
@@ -49,7 +51,7 @@ class CaptureWindow(QtGui.QMainWindow):
         
     def process(self):
         self.videoScreen.onNewFrame(self.frame)
-        color = img_process.imgProcess(self.frame, self.paramProvider)
+        color = self.imgProcess.imgProcess(self.frame, self.paramProvider)
         self.outputScreen.onNewFrame(color)
 
     @QtCore.pyqtSlot()
