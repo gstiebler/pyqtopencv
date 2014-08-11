@@ -29,10 +29,12 @@ class CaptureWindow(QtGui.QMainWindow):
         self.paramProvider.addSlider(self.ui.sliderHueMin, "hueMin")
         self.paramProvider.addSlider(self.ui.sliderHueMax, "hueMax")
         self.paramProvider.addSlider(self.ui.sliderSaturationMin, "satMin")
+        self.paramProvider.addSlider(self.ui.lumMinSlider, "lumMin")
         
         self.ui.sliderHueMin.valueChanged.connect(self.sliderValueChanged)
         self.ui.sliderHueMax.valueChanged.connect(self.sliderValueChanged)
         self.ui.sliderSaturationMin.valueChanged.connect(self.sliderValueChanged)
+        self.ui.lumMinSlider.valueChanged.connect(self.sliderValueChanged)
         
         self.ui.keepCapturingCheckBox.stateChanged.connect(self.keepCapturingClicked)
         self.ui.zoomViewButton.clicked.connect(self.openViewerWindow)

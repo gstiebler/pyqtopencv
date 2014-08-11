@@ -54,7 +54,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>600</y>
+      <y>590</y>
       <width>160</width>
       <height>22</height>
      </rect>
@@ -83,7 +83,7 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>600</y>
+      <y>590</y>
       <width>46</width>
       <height>16</height>
      </rect>
@@ -109,7 +109,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>600</y>
+      <y>590</y>
       <width>46</width>
       <height>13</height>
      </rect>
@@ -122,7 +122,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>630</y>
+      <y>620</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>630</y>
+      <y>620</y>
       <width>160</width>
       <height>22</height>
      </rect>
@@ -151,7 +151,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>630</y>
+      <y>620</y>
       <width>46</width>
       <height>13</height>
      </rect>
@@ -164,7 +164,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>660</y>
+      <y>680</y>
       <width>101</width>
       <height>17</height>
      </rect>
@@ -187,6 +187,48 @@
     </property>
     <property name="text">
      <string>Zoom view</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>650</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Lum min:</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="lumMinSlider">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>650</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMinValue_3">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>650</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
@@ -233,7 +275,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>365</x>
-     <y>625</y>
+     <y>623</y>
     </hint>
    </hints>
   </connection>
@@ -245,11 +287,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>280</x>
-     <y>664</y>
+     <y>662</y>
     </hint>
     <hint type="destinationlabel">
      <x>360</x>
-     <y>659</y>
+     <y>653</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lumMinSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>labelMinValue_3</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>678</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>675</y>
     </hint>
    </hints>
   </connection>
