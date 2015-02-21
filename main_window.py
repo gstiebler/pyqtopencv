@@ -38,6 +38,7 @@ class CaptureWindow(QtGui.QMainWindow):
         
         self.ui.keepCapturingCheckBox.stateChanged.connect(self.keepCapturingClicked)
         self.ui.zoomViewButton.clicked.connect(self.openViewerWindow)
+        self.ui.btOpenFile.clicked.connect(self.openFile)
         
         self.imgProcess = img_process.ImgProcess()
 
@@ -45,10 +46,11 @@ class CaptureWindow(QtGui.QMainWindow):
         self.timer.timeout.connect(self.queryFrame)
         
         fps = self.stream.get(cv2.cv.CV_CAP_PROP_FPS)
-        if not fps > 0: fps = self.DEFAULT_FPS
+        if not fps > 0: 
+            fps = self.DEFAULT_FPS
         
         self.timer.setInterval(1000/fps)
-        self.timer.start()
+        #self.timer.start()
         self.ui.show()
         
     def process(self):
@@ -59,13 +61,14 @@ class CaptureWindow(QtGui.QMainWindow):
     @QtCore.pyqtSlot()
     def queryFrame(self):
         ret, self.frame = self.stream.read()
-        if not ret: return
+        if not ret: 
+            return
         self.process()
         
     @QtCore.pyqtSlot()
     def sliderValueChanged(self):
-        if(not self.ui.keepCapturingCheckBox.isChecked()):
-            self.process()
+        #if(not self.ui.keepCapturingCheckBox.isChecked()):
+        self.process()
         
     @QtCore.pyqtSlot()
     def keepCapturingClicked(self):
@@ -73,6 +76,13 @@ class CaptureWindow(QtGui.QMainWindow):
             self.timer.start()
         else:
             self.timer.stop()
+            
+    @QtCore.pyqtSlot()
+    def openFile(self):
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file',  'c:/Projetos/robot/imagens')
+        srcImage = cv2.imread(str(fname), cv2.CV_LOAD_IMAGE_COLOR)
+        self.frame = cv2.resize( srcImage, (640, 480) )
+        self.videoScreen.onNewFrame( self.frame )
     
     @QtCore.pyqtSlot()
     def openViewerWindow(self):
