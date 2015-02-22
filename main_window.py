@@ -2,6 +2,10 @@ import cv2
 import numpy as np
 from PyQt4 import QtGui, QtCore, uic
 
+from jnius import autoclass
+import ctypes
+
+
 from video_screen import VideoScreen 
 from param_provider import ParamProvider
 
@@ -55,8 +59,30 @@ class CaptureWindow(QtGui.QMainWindow):
         
     def process(self):
         self.videoScreen.onNewFrame(self.frame)
-        color = self.imgProcess.imgProcess(self.frame, self.paramProvider)
-        self.outputScreen.onNewFrame(color)
+        #color = self.imgProcess.imgProcess(self.frame, self.paramProvider)
+        
+        height, width = self.frame.shape[:2]
+        ImgProcess = autoclass('ImgProcess')
+        #bytesArray = self.frame.tolist()
+        shape = self.frame.shape
+        print self.frame.shape
+        print type( self.frame )
+        print self.frame.dtype
+        print type( ord(self.frame.data[0]) )
+        bytesArray = np.reshape( self.frame, ( 640 * 480 * 3 ) )
+        print bytesArray.dtype
+        bytesList = bytesArray.tolist()
+        print type( bytesList[0] )
+        ImgProcess.process( bytesList, 640, 480 )
+        newArray = np.asarray( bytesList )
+        newArray = newArray.astype( 'uint8' )
+        self.frame = np.reshape( newArray, shape )
+        #self.frame = np.reshape( bytesArray, shape )
+        print self.frame.shape
+        print type( self.frame )
+        
+        self.outputScreen.onNewFrame(self.frame)
+        
 
     @QtCore.pyqtSlot()
     def queryFrame(self):

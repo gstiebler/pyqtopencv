@@ -165,7 +165,7 @@
      <rect>
       <x>60</x>
       <y>680</y>
-      <width>101</width>
+      <width>151</width>
       <height>17</height>
      </rect>
     </property>
@@ -181,7 +181,7 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>75</width>
+      <width>91</width>
       <height>23</height>
      </rect>
     </property>
@@ -234,9 +234,9 @@
    <widget class="QPushButton" name="btOpenFile">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>150</x>
       <y>10</y>
-      <width>75</width>
+      <width>91</width>
       <height>23</height>
      </rect>
     </property>
