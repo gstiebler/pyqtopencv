@@ -1,12 +1,13 @@
 
 public class ImgProcess
 {
-    public static void process( RGBImg rgbImg ) {   
-        int xCenter = rgbImg.getWidth() / 2;
-        int yCenter = rgbImg.getHeight() / 2;
-        for( int y = yCenter - 10; y < yCenter + 10; ++y) {
-            for( int x = xCenter - 10; x < xCenter + 10; ++x ) {
-                rgbImg.setRGB( x, y, (char) 255, (char) 0, (char) 0 );
+    public static void process( GrayImg grayImg, RGBImg rgbImg ) {   
+        int width = rgbImg.getWidth();
+        int height = rgbImg.getHeight();
+        for( int y = 0; y < height; ++y) {
+            for( int x = 0; x < width; ++x ) {
+                if( grayImg.getLum( x, y ) > 127 )
+                    rgbImg.setRGB( x, y, (char) 255, (char) 0, (char) 0 );
             }
         }
     }  
