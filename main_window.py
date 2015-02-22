@@ -58,9 +58,9 @@ class CaptureWindow(QtGui.QMainWindow):
         self.videoScreen.onNewFrame(self.frame)
         
         #color = self.imgProcess.imgProcess(self.frame, self.paramProvider)
-        self.frame = java_process.process( self.frame )
+        outputImg = java_process.process( self.frame )
         
-        self.outputScreen.onNewFrame(self.frame)
+        self.outputScreen.onNewFrame( outputImg )
         
 
     @QtCore.pyqtSlot()

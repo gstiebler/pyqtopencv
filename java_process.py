@@ -16,7 +16,7 @@ def process( src_img ):
     grayBytesArray = np.reshape( gray_image, ( width * height ) )
     grayBytesList = grayBytesArray.tolist()
     
-    PreProcess.preProcess( grayBytesList, colorBytesList, width, height )
+    PreProcess.preProcess( grayBytesList, colorBytesList, width, height, 10 )
     
     colorNewArray = np.asarray( colorBytesList )
     colorNewArray = colorNewArray.astype( 'uint8' )
